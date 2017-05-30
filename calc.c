@@ -11,10 +11,10 @@ int main(){
 	float (*resultFunc)(int, int);
 	fp = fopen("read.txt","r");
 	if(fp!=NULL){
-		fscanf(fp, "%d", &line);
+		my_fscanf(fp, "%d", &line);
 		int i;
 		for(i=0; i<line; i++) {
-			fscanf(fp, "%d %c %d",&operand1, &operator, &operand2);
+			my_fscanf(fp, "%d %c %d",&operand1, &operator, &operand2);
 			if(feof(fp)) break;
 			switch(operator) {
 				case '+':
