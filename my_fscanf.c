@@ -12,6 +12,8 @@ void my_fscanf(FILE *fp, const char *format, ...){
 			case 'c':
 				{
 					char c = getc(fp);
+					while(c == ' ')
+						c = getc(fp);
 					*va_arg(list, char*) = c;
 					break;
 				}
@@ -19,15 +21,20 @@ void my_fscanf(FILE *fp, const char *format, ...){
 				{
 					char c = getc(fp);
 					int i, result = 0;
-					for(i = 0; !isdigit(c); i++){
+					while(c == ' ')
+						c = getc(fp);
+					for(i = 0; isdigit(c); i++){
 						result *= 10;
 						result += c - '0';
+						c = getc(fp);
 					}
 					*va_arg(list, int*) = result;
 				break;
 				}
 			}
 		}
+		else
+			format++;
 	}
 	va_end(list);
 }
